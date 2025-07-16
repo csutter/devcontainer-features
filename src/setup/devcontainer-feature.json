@@ -1,0 +1,6 @@
+{
+  "id": "setup",
+  "version": "0.1.0",
+  "name": "Personal Development Setup",
+  "description": "Sets up my dotfiles and installs additional packages for a personalized development environment."
+}

@@ -1,0 +1,20 @@
+{
+  "debian": {
+    "image": "debian:latest",
+    "features": {
+      "setup": {}
+    }
+  },
+  "fedora": {
+    "image": "fedora:latest",
+    "features": {
+      "setup": {}
+    }
+  },
+  "ubuntu": {
+    "image": "ubuntu:latest",
+    "features": {
+      "setup": {}
+    }
+  }
+}
