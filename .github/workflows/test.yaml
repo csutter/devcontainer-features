@@ -1,0 +1,65 @@
+name: "Test"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  docs:
+    name: "Ensure documentation has been generated"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: "Install devcontainer CLI"
+        run: npm install -g @devcontainers/cli
+
+      - name: "Generate docs"
+        run: devcontainer features generate-docs -p src -n csutter/devcontainer-features
+
+      - name: "Verify docs are up to date"
+        run: git diff --quiet -- */**/README.md
+
+  shellcheck:
+    name: Shellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@2.0.0
+
+  test:
+    name: "Test ${{ matrix.feature }} on ${{ matrix.baseImage }}"
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      matrix:
+        feature:
+          - personal-setup
+        baseImage:
+          # Vanilla distribution images
+          - docker.io/library/debian:latest
+          - docker.io/library/ubuntu:latest
+          - quay.io/fedora/fedora-toolbox:latest
+          # Microsoft devcontainer base image
+          - mcr.microsoft.com/devcontainers/base:ubuntu
+    steps:
+      - uses: actions/checkout@v4
+
+      # The personal-setup feature requires my dotfiles folders to be present in the expected
+      # location, so clone the public repo to simulate this, and fake the private repo mount.
+      - name: "Prepare demo dotfiles mounts"
+        run: |
+          mkdir -p $HOME/src/csutter
+          mkdir $HOME/src/csutter/dotfiles-private
+          git clone https://github.com/csutter/dotfiles.git $HOME/src/csutter/dotfiles
+
+      - name: "Install devcontainer CLI"
+        run: npm install -g @devcontainers/cli
+
+      - name: "Test feature: ${{ matrix.feature }} on ${{ matrix.baseImage }}"
+        run: devcontainer features test --features ${{ matrix.feature }} --base-image ${{ matrix.baseImage }}

@@ -1,0 +1,2 @@
+# Don't follow external sources
+disable=SC1091

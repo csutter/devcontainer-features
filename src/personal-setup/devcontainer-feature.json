@@ -1,0 +1,22 @@
+{
+  "id": "personal-setup",
+  "version": "1.0.0",
+  "name": "Personal Setup",
+  "description": "Sets up my desired software and configuration for any devcontainer environment.",
+  "mounts": [
+    {
+      "type": "bind",
+      "source": "${localEnv:HOME}/src/csutter/dotfiles",
+      "target": "/mnt/dotfiles"
+    },
+    {
+      "type": "bind",
+      "source": "${localEnv:HOME}/src/csutter/dotfiles-private",
+      "target": "/mnt/dotfiles-private"
+    }
+  ],
+  "containerEnv": {
+    "RCRC": "/mnt/dotfiles/tag-devcontainer/rcrc"
+  },
+  "postCreateCommand": "rcup -vf"
+}
