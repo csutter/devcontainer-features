@@ -1,0 +1,23 @@
+[tools]
+node = "24"
+"npm:@devcontainers/cli" = "0.80"
+"github:koalaman/shellcheck" = "v0.11.0"
+
+[tasks.docs]
+description = "Generate documentation for all features"
+# Note: The `generate-docs` command documentation wrongly suggests -p should be the root of the
+# repo, but it should be the src/ directory.
+run = "devcontainer features generate-docs -p src -n csutter/devcontainer-features"
+
+[tasks.lint-shell]
+description = "Lint all shell scripts using ShellCheck"
+run = "find . -name '*.sh' -print0 | xargs -0 shellcheck"
+
+[tasks.test]
+description = "Run tests for all features"
+run = [
+  "devcontainer features test -i docker.io/library/debian:latest",
+  "devcontainer features test -i docker.io/library/ubuntu:latest",
+  "devcontainer features test -i quay.io/fedora/fedora-toolbox:latest",
+  "devcontainer features test -i mcr.microsoft.com/devcontainers/base:ubuntu",
+]
