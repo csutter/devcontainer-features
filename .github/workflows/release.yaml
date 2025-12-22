@@ -10,17 +10,17 @@ jobs:
     name: "Release to GHCR"
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
+
     permissions:
-      contents: write
-      pull-requests: write
       packages: write
+
     steps:
       - uses: actions/checkout@v6
 
       - name: "Publish features"
         uses: devcontainers/action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           publish-features: "true"
           base-path-to-features: "./src"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
