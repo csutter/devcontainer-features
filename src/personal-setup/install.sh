@@ -12,10 +12,10 @@ echo "Installing packages for distribution: $ID"
 case "$ID" in
     debian|ubuntu)
         apt-get update
-        apt-get install -y fish rcm tree
+        apt-get install -y fish git-delta rcm tree
         ;;
     fedora)
-        dnf install -y fish rcm tree
+        dnf install -y fish git-delta rcm tree
         ;;
     *)
         echo "Error: Unsupported distribution: $ID"

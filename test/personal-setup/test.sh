@@ -3,6 +3,7 @@ set -e
 
 source dev-container-features-test-lib
 
+check "delta is available"       bash -c "which delta"
 check "fish is available"       bash -c "which fish"
 check "rcm is available"        bash -c "which rcup"
 check "tree is available"       bash -c "which tree"
