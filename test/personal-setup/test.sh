@@ -10,5 +10,6 @@ check "tree is available"       bash -c "which tree"
 check "ssh is available"        bash -c "which ssh"
 # Use a dotfile that should _always_ be present on any system
 check "dotfiles are installed"  bash -c "test -f $HOME/.config/fish/config.fish"
+check "_IS_DEVCONTAINER is set" bash -c "test \"\$_IS_DEVCONTAINER\" = \"true\""
 
 reportResults
