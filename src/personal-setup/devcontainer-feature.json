@@ -1,6 +1,6 @@
 {
   "id": "personal-setup",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "name": "Personal Setup",
   "description": "Sets up my desired software and configuration for any devcontainer environment.",
   "mounts": [
@@ -16,7 +16,8 @@
     }
   ],
   "containerEnv": {
-    "RCRC": "/mnt/dotfiles/tag-devcontainer/rcrc"
+    "RCRC": "/mnt/dotfiles/tag-devcontainer/rcrc",
+    "_IS_DEVCONTAINER": "true"
   },
   "postCreateCommand": "rcup -vf"
 }
