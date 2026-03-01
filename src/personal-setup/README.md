@@ -7,7 +7,7 @@ Sets up my desired software and configuration for any devcontainer environment.
 
 ```json
 "features": {
-    "ghcr.io/csutter/devcontainer-features/personal-setup:1": {}
+    "ghcr.io/csutter/devcontainer-features/personal-setup:2": {}
 }
 ```
 
@@ -27,7 +27,12 @@ I've previously (ab)used the _Dev Containers_ extension's built in dotfiles supp
 This feature:
 - Installs a set of packages in the container (including `rcm` for dotfiles management)
 - Mounts my dotfiles repositories into the container
-- Installs the dotfiles (with appropriate tags)
+- Copies in an `rcrc` for dotfiles configuration, including:
+  - setting the correct tags and dotfiles mount locations
+  - avoiding setting up git config (as VS Code will copy it into the container anyway with
+    modifications, which would modify our canonical dotfiles version with transient,
+    container-specific setup)
+- Installs the dotfiles
 
 This feature is intended to be configured as part of my personal user settings as a default feature
 for all devcontainers (through `dev.containers.defaultFeatures`). It's obviously specific to me,
