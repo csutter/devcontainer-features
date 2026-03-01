@@ -23,3 +23,5 @@ case "$ID" in
         exit 1
         ;;
 esac
+
+cp rcrc /etc/rcrc
