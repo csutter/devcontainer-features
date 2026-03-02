@@ -12,10 +12,10 @@ echo "Installing packages for distribution: $ID"
 case "$ID" in
     debian|ubuntu)
         apt-get update
-        apt-get install -y fzf git-delta rcm tree openssh-client
+        apt-get install -y fish git-delta rcm tree openssh-client
         ;;
     fedora)
-        dnf install -y fzf git-delta rcm tree openssh-clients
+        dnf install -y fish git-delta rcm tree openssh-clients
         ;;
     *)
         echo "Error: Unsupported distribution: $ID"
@@ -23,5 +23,3 @@ case "$ID" in
         exit 1
         ;;
 esac
-
-cp rcrc /etc/rcrc

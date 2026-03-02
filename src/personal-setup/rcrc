@@ -1,3 +1,0 @@
-EXCLUDES="*.md config/git/config"
-TAGS="devcontainer"
-DOTFILES_DIRS="/mnt/dotfiles /mnt/dotfiles-private"
