@@ -12,10 +12,10 @@ echo "Installing packages for distribution: $ID"
 case "$ID" in
     debian|ubuntu)
         apt-get update
-        apt-get install -y fish git-delta rcm tree openssh-client
+        apt-get install -y curl fd-find fish git-delta jq less openssh-client rcm ripgrep tree
         ;;
     fedora)
-        dnf install -y fish git-delta rcm tree openssh-clients
+        dnf install -y curl fd-find fish git-delta jq less openssh-clients rcm ripgrep tree
         ;;
     *)
         echo "Error: Unsupported distribution: $ID"
