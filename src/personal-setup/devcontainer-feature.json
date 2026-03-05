@@ -1,6 +1,6 @@
 {
   "id": "personal-setup",
-  "version": "4.2.0",
+  "version": "4.3.0",
   "name": "Personal Setup",
   "description": "Sets up my desired software and configuration for any devcontainer environment.",
   "mounts": [
@@ -13,6 +13,11 @@
       "type": "bind",
       "source": "${localEnv:HOME}/src/csutter/dotfiles-private",
       "target": "/mnt/dotfiles-private"
+    },
+    {
+      "type": "bind",
+      "source": "${localEnv:HOME}/.claude/credentials.json",
+      "target": "${containerEnv:HOME}/.claude/credentials.json"
     }
   ],
   "containerEnv": {
