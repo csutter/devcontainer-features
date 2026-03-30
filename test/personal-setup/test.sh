@@ -16,7 +16,9 @@ check "ssh is available"          bash -c "which ssh"
 check "tree is available"         bash -c "which tree"
 
 # Check dotfiles are installed
-check "dotfiles are installed"  bash -c "test -f $HOME/.rcrc"
+# WARNING: implicit dependency on the contents of the dotfiles repo
+check "rcrc is created"       bash -c "test -f $HOME/.rcrc"
+check "dotfiles are linked"   bash -c "test -L $HOME/.config/git/config_devcontainer"
 
 # Check environment variables are set
 check "_IS_DEVCONTAINER is set" bash -c "test \"\$_IS_DEVCONTAINER\" = \"true\""
