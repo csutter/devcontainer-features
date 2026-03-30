@@ -23,3 +23,10 @@ case "$ID" in
         exit 1
         ;;
 esac
+
+echo "Setting up rcm configuration for user: $_REMOTE_USER"
+cat > "$_REMOTE_USER_HOME/.rcrc" <<'EOF'
+EXCLUDES="README.md"
+DOTFILES_DIRS="/mnt/dotfiles /mnt/dotfiles-private"
+TAGS="devcontainer"
+EOF

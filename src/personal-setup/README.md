@@ -7,7 +7,7 @@ Sets up my desired software and configuration for any devcontainer environment.
 
 ```json
 "features": {
-    "ghcr.io/csutter/devcontainer-features/personal-setup:4": {}
+    "ghcr.io/csutter/devcontainer-features/personal-setup:5": {}
 }
 ```
 
