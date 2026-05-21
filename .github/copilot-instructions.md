@@ -9,7 +9,7 @@ src/<feature-name>/
   devcontainer-feature.json   # Metadata, mounts, env vars, postCreateCommand
   install.sh                  # Runs at image build time (root, inside container)
   NOTES.md                    # Human-written design notes — update when making meaningful changes
-  README.md                   # Auto-generated — DO NOT edit directly, run `mise run docs`
+  README.md                   # Auto-generated — DO NOT edit directly, run `make docs`
 test/<feature-name>/
   test.sh                     # Integration test run inside container after feature install
 ```
@@ -19,7 +19,7 @@ test/<feature-name>/
 1. Create `src/<feature-name>/devcontainer-feature.json`, `install.sh`, and `NOTES.md`
 2. Add `test/<feature-name>/test.sh` covering every installed binary and configured file
 3. Add the new feature to the top-level `README.md` features list
-4. Run `mise run docs` to generate `src/<feature-name>/README.md`
+4. Run `make docs` to generate `src/<feature-name>/README.md`
 
 ## `install.sh` Conventions
 
@@ -42,14 +42,14 @@ reportResults
 
 - Add a `check` for every binary installed and every file/env var configured
 - Always write tests for new functionality before considering it complete
-- Run tests: `mise run test` (tests against debian, ubuntu, fedora-toolbox, devcontainers/base:ubuntu)
+- Run tests: `make test` (tests against debian, ubuntu, fedora-toolbox, devcontainers/base:ubuntu)
 
 ## Before Committing
 
 ```sh
-mise run lint-shell   # ShellCheck all .sh files
-mise run docs         # Regenerate README.md from devcontainer-feature.json + NOTES.md
-mise run test         # Full integration test suite (requires Docker)
+make lint-shell   # ShellCheck all .sh files
+make docs         # Regenerate README.md from devcontainer-feature.json + NOTES.md
+make test         # Full integration test suite (requires Docker)
 ```
 
 ## NOTES.md
